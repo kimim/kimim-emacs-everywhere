@@ -14,6 +14,8 @@ List of keys:
 |                      | M-b  | backward-word              |          |
 | Page Navigation      | C-v  | <page down>                |          |
 |                      | M-v  | <page up>                  |          |
+|                      | M-<  | beginning of buffer        |          |
+|                      | M->  | end of buffer              |          |
 | Line Navigation      | C-a  | beginning of line          |          |
 |                      | C-e  | end of line                |          |
 |                      | C-p  | <up>                       |          |
@@ -26,3 +28,5 @@ List of keys:
 |                      | C-y  | paste                      |          |
 | Search               | C-s  | find                       |          |
 |                      | C-r  | reverse find               |          |
+| Undo                 | C-/  | undo                       |          |
+|                      |      |                            |          |
