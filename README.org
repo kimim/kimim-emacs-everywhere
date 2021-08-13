@@ -1,6 +1,6 @@
 Most of the code is come from Brian Chavez's [[https://github.com/bchavez/AutoHotKeyEmacs][AutoHotKeyEmacs]], but as you know
 different emacs users have different key bindings, thus this repo modify and add
-some keys frequently used by myself, to keep the same key maps with [[kimim/kimim-emacs][kimim-emacs]].
+some keys frequently used by myself, to keep the same key maps with [[https://github.com/kimim/kimim-emacs][kimim-emacs]].
 
 List of keys:
 
@@ -26,4 +26,3 @@ List of keys:
 |                      | C-y  | paste                      |          |
 | Search               | C-s  | find                       |          |
 |                      | C-r  | reverse find               |          |
-|                      |      |                            |          |
