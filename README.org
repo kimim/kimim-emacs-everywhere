@@ -1,0 +1,29 @@
+Most of the code is come from Brian Chavez's [[https://github.com/bchavez/AutoHotKeyEmacs][AutoHotKeyEmacs]], but as you know
+different emacs users have different key bindings, thus this repo modify and add
+some keys frequently used by myself, to keep the same key maps with [[kimim/kimim-emacs][kimim-emacs]].
+
+List of keys:
+
+| Mode                 | Keys | Description                | Comments |
+|----------------------+------+----------------------------+----------|
+| Global               | C-g  | Cancel operations          |          |
+|                      | C-z  | mark                       |          |
+| Character Navigation | C-f  | <right>                    |          |
+|                      | C-b  | <left>                     |          |
+| Word                 | M-f  | forward-word               |          |
+|                      | M-b  | backward-word              |          |
+| Page Navigation      | C-v  | <page down>                |          |
+|                      | M-v  | <page up>                  |          |
+| Line Navigation      | C-a  | beginning of line          |          |
+|                      | C-e  | end of line                |          |
+|                      | C-p  | <up>                       |          |
+|                      | C-n  | <down>                     |          |
+| Kill/Delete          | C-h  | <backspace>                |          |
+|                      | C-d  | <delete>                   |          |
+|                      | C-k  | kill selected or kill line |          |
+|                      | C-w  | cut                        |          |
+|                      | M-w  | copy                       |          |
+|                      | C-y  | paste                      |          |
+| Search               | C-s  | find                       |          |
+|                      | C-r  | reverse find               |          |
+|                      |      |                            |          |
