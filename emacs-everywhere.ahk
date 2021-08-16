@@ -236,6 +236,11 @@ if( !IsInSelectMode ){
     {
         Send, !{F4}
     }
+    IfWinActive ahk_class MozillaWindowClass
+    {
+        Send, {F6}
+    }
+
     OutputDebug, "ESC"
     Send, {Esc}
 }

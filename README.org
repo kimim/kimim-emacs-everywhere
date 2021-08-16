@@ -5,7 +5,7 @@ some keys frequently used by myself, to keep the same key maps with [[https://gi
 
 To use this script:
 1. Install AutoHotKey, downloaded from https://www.autohotkey.com/download/
-2. Open `emacs-everywhere.ahk` with `AutoHotKey.exe`, then you can see an emacs
+2. Open =emacs-everywhere.ahk= with =AutoHotKey.exe=, then you can see an emacs
    logo in system tray
 
 
