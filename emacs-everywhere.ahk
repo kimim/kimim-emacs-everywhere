@@ -328,6 +328,11 @@ SetSelectMode(false)
 SendCommand("^h","{Backspace}")
 return
 
+$!h::
+SetSelectMode(false)
+SendCommand("!h","^{Backspace}")
+return
+
 $^d::
 SetSelectMode(false)
 SendCommand("^d","{Delete}")
