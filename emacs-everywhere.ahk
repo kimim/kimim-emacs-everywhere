@@ -333,7 +333,6 @@ SetSelectMode(false)
 SendCommand("^d","{Delete}")
 return
 
-
 $^k::
 SetSelectMode(false)
 emacskey := "^k"
@@ -355,7 +354,6 @@ else{
     ;MsgBox "Is empty!" .%selection%
     Send, +{End}
     Send, ^x
-    Send, {Del}
 }
 
 return
