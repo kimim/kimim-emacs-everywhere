@@ -68,6 +68,13 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
             stroke1 = ^f
     }
 
+    if WinActive("ahk_class SUMATRA_PDF_FRAME"){
+        if( emacskey = "^s")
+            stroke1 = ^f
+        if( emacskey = "^r")
+            stroke1 = ^f
+    }
+
     if WinActive("ahk_exe Notepad2.exe") AND WinActive("Find Text") {
         if( emacskey = "^s"){
             ControlClick, &Find Next, Find Text
