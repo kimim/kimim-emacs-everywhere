@@ -353,6 +353,7 @@ else{
     ;selection is empty, delete till the end of the line
     ;MsgBox "Is empty!" .%selection%
     Send, +{End}
+    Send, +{Left} ;; keep the line break
     Send, ^x
 }
 
