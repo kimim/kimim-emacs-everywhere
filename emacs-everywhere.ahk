@@ -397,6 +397,18 @@ $^s::SendCommand("^s","{F3}") ;find
 $^r::SendCommand("^r","{Shift}+{F3}") ;reverse
 
 ;==========================
+;Edit
+;==========================
+
+$^o::
+Send, {Home}
+Send, {Enter}
+Send, {Up}
+return
+
+$^j::SendCommand("^j", "{Enter}")
+
+;==========================
 ; File Handling Commands CTRL+X
 ;==========================
 
