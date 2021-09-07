@@ -338,6 +338,11 @@ SetSelectMode(false)
 SendCommand("^d","{Delete}")
 return
 
+$!d::
+SetSelectMode(false)
+SendCommand("!d", "^{Delete}")
+return
+
 $^k::
 SetSelectMode(false)
 emacskey := "^k"
