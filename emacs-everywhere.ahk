@@ -458,6 +458,9 @@ if( Stroke = "^s" ){
 } else if( Stroke = "^f" ) {
     ; open file
     SendCommand("^x^f", "^o")
+} else if( Stroke = "p" ) {
+    ;; print
+    SendCommand("^xp", "^p")
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
