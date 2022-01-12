@@ -12,6 +12,8 @@
 GroupAdd, NotActiveGroup, ahk_class mintty ;, ahk_exe foo.exe, etc..
 GroupAdd, NotActiveGroup, ahk_class Emacs
 GroupAdd, NotActiveGroup, ahk_exe VirtualBoxVM.exe
+GroupAdd, NotActiveGroup, ahk_exe vcxsrv.exe
+;GroupAdd, NotActiveGroup, ahk_exe doublecmd.exe
 
 ;==========================
 ;Initialise
@@ -474,13 +476,25 @@ if( Stroke = "^s" ){
 Suspend, Off
 return
 
+
 ; switch window with Alt-o
 $!o::SendCommand("!o", "!{Tab}")
 
 #f::
-Run firefox
+Run firefox.exe
+return
+
+#o::
+; show outlook, reuse the instance
+Run "C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE" /recycle
 return
 
 #g::
 Run msedge.exe
+return
+
+
+#m::
+; minimize the top most window
+WinMinimize, A
 return
