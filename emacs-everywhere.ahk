@@ -5,13 +5,15 @@
 ; Author:         David <tchepak@gmail.com>, Kimi <kimi.im@outlook.com>
 ;
 ; Script Function:
-;   Provides an Emacs-like keybinding emulation mode that can be toggled on and off using
-;   the CapsLock key.
+;   Provides an Emacs-like keybinding emulation mode
 ;
 
 ;Disable Emacs Keys for the following programs:
 GroupAdd, NotActiveGroup, ahk_class mintty ;, ahk_exe foo.exe, etc..
 GroupAdd, NotActiveGroup, ahk_class Emacs
+GroupAdd, NotActiveGroup, ahk_exe VirtualBoxVM.exe
+GroupAdd, NotActiveGroup, ahk_exe vcxsrv.exe
+;GroupAdd, NotActiveGroup, ahk_exe doublecmd.exe
 
 ;==========================
 ;Initialise
@@ -160,7 +162,8 @@ SetEmacsMode(toActive) {
     Menu, Tray, Icon, %iconFile%,
     Menu, Tray, Tip, Emacs Everywhere`nEmacs mode is %state%
 
-    Send {Shift Up}
+    ;;Send {Shift Up}
+    Send, {Esc}
 }
 
 SetSelectMode(toActive){
@@ -220,7 +223,7 @@ GetSelectedText()
 ;Emacs mode toggle
 ;==========================
 
-#`::
+#/::
 SetEmacsMode(!IsInEmacsMode)
 return
 
@@ -461,6 +464,9 @@ if( Stroke = "^s" ){
 } else if( Stroke = "p" ) {
     ;; print
     SendCommand("^xp", "^p")
+} else if( Stroke = "o") {
+    ;; switch window
+    SendCommand("^xo", "!{Tab}")
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
@@ -468,4 +474,43 @@ if( Stroke = "^s" ){
 }
 
 Suspend, Off
+return
+
+
+; switch window with Alt-o
+$!o::SendCommand("!o", "!{Tab}")
+
+#f::
+Run firefox.exe
+return
+
+#o::
+; show outlook, reuse the instance
+Run "C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE" /recycle
+return
+
+#g::
+Run msedge.exe
+return
+
+#\::
+Run "C:\Users\%A_UserName%\msys64\kimikit\shortcuts\wsl-mu4e.vbs"
+return
+
+#|::
+Run "C:\Users\%A_UserName%\msys64\kimikit\shortcuts\vcxsrv.vbs"
+return
+
+#c::
+Run "C:\Users\%A_UserName%\msys64\kimikit\doublecmd\doublecmd.exe"
+return
+
+#m::
+; minimize the top most window
+WinMinimize, A
+return
+
+#.::
+Send, %A_MM%/%A_DD%/%A_YYYY%
+
 return
