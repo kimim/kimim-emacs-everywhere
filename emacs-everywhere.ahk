@@ -493,6 +493,9 @@ return
 Run msedge.exe
 return
 
+#c::
+Run "C:\Users\%A_UserName%\msys64\kimikit\doublecmd\doublecmd.exe"
+return
 
 #m::
 ; minimize the top most window
