@@ -11,29 +11,30 @@ To use this script:
 
 List of keys:
 
-| Mode                 | Keys | Description                | Comments |
-|----------------------+------+----------------------------+----------|
-| Global               | C-g  | Cancel operations          |          |
-|                      | C-z  | mark                       |          |
-| Character Navigation | C-f  | <right>                    |          |
-|                      | C-b  | <left>                     |          |
-| Word                 | M-f  | forward-word               |          |
-|                      | M-b  | backward-word              |          |
-| Page Navigation      | C-v  | <page down>                |          |
-|                      | M-v  | <page up>                  |          |
-|                      | M-<  | beginning of buffer        |          |
-|                      | M->  | end of buffer              |          |
-| Line Navigation      | C-a  | beginning of line          |          |
-|                      | C-e  | end of line                |          |
-|                      | C-p  | <up>                       |          |
-|                      | C-n  | <down>                     |          |
-| Kill/Delete          | C-h  | <backspace>                |          |
-|                      | C-d  | <delete>                   |          |
-|                      | C-k  | kill selected or kill line |          |
-|                      | C-w  | cut                        |          |
-|                      | M-w  | copy                       |          |
-|                      | C-y  | paste                      |          |
-| Search               | C-s  | find                       |          |
-|                      | C-r  | reverse find               |          |
-| Undo                 | C-/  | undo                       |          |
-|                      |      |                            |          |
+| Mode                 | Keys  | Description                | Comments |
+|----------------------+-------+----------------------------+----------|
+| Global               | C-g   | Cancel operations          |          |
+|                      | C-z   | mark                       |          |
+|                      | Win-/ | toggle emacs everywhere    |          |
+| Character Navigation | C-f   | <right>                    |          |
+|                      | C-b   | <left>                     |          |
+| Word                 | M-f   | forward-word               |          |
+|                      | M-b   | backward-word              |          |
+| Page Navigation      | C-v   | <page down>                |          |
+|                      | M-v   | <page up>                  |          |
+|                      | M-<   | beginning of buffer        |          |
+|                      | M->   | end of buffer              |          |
+| Line Navigation      | C-a   | beginning of line          |          |
+|                      | C-e   | end of line                |          |
+|                      | C-p   | <up>                       |          |
+|                      | C-n   | <down>                     |          |
+| Kill/Delete          | C-h   | <backspace>                |          |
+|                      | C-d   | <delete>                   |          |
+|                      | C-k   | kill selected or kill line |          |
+|                      | C-w   | cut                        |          |
+|                      | M-w   | copy                       |          |
+|                      | C-y   | paste                      |          |
+| Search               | C-s   | find                       |          |
+|                      | C-r   | reverse find               |          |
+| Undo                 | C-/   | undo                       |          |
+|                      |       |                            |          |
