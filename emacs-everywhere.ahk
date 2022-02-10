@@ -477,6 +477,63 @@ Suspend, Off
 return
 
 
+$^q::
+Suspend, On ; other hotkeys such as ^s from being queued http://l.autohotkey.net/docs/misc/Threads.htm
+Critical ; and don't interrupt (suspend) the current thread's execution
+
+Input, RawInput, L1 M
+Transform, AsciiCode, Asc, %RawInput%
+
+;MsgBox RawInput: %RawInput%
+;MsgBox AsciiCode: %AsciiCode%
+;KeyHistory
+
+if( AsciiCode <= 26 ){
+    ; Check if Control+Letter, if so, boost to ascii letter.
+    AsciiCode += 96
+    Transform, CtrlLetter, Chr, %AsciiCode%
+    Stroke = ^%CtrlLetter%
+}
+else{
+    Stroke = %RawInput%
+}
+
+SetSelectMode(false)
+
+; C-g		keyboard-quit		Stop current command Now!
+if( Stroke = "^g" ){
+    Suspend, Off
+    return
+}
+
+; | Char | Input     |
+; |------+-----------|
+; | ö    | C-q M-v   |
+; | ä    | C-q M-d   |
+; | å    | C-q M-e   |
+; | ç    | C-q M-g   |
+; | ß    | C-q M-_   |
+
+if( Stroke = "v" ){
+    Send, ö
+} else if( Stroke = "e" ){
+    Send, å
+} else if( Stroke = "d" ){
+    Send, ä
+} else if( Stroke = "g" ){
+    Send, ç
+} else if( Stroke = "_") {
+    Send, ß
+} else{
+    ;else pass along the emacs key
+    emacsKey = ^x%Stroke%
+    SendCommand(emacsKey, emacsKey)
+}
+
+Suspend, Off
+return
+
+
 ; switch window with Alt-o
 $!o::SendCommand("!o", "!{Tab}")
 
