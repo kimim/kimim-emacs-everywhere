@@ -11,16 +11,15 @@
 ;Disable Emacs Keys for the following programs:
 GroupAdd, NotActiveGroup, ahk_class mintty ;, ahk_exe foo.exe, etc..
 GroupAdd, NotActiveGroup, ahk_class Emacs
+;GroupAdd, NotActiveGroup, ahk_class TTOTAL_CMD
 GroupAdd, NotActiveGroup, ahk_exe VirtualBoxVM.exe
 GroupAdd, NotActiveGroup, ahk_exe vcxsrv.exe
-;GroupAdd, NotActiveGroup, ahk_exe doublecmd.exe
 
 ;==========================
 ;Initialise
 ;==========================
 ; no env creates problems with rider64.exe
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-
 
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -29,6 +28,9 @@ enabledIcon := "emacs-everywhere-enable.ico"
 disabledIcon := "emacs-everywhere-disable.ico"
 IsInEmacsMode := false
 IsInSelectMode := false
+
+; dont show S when suspend
+Menu, Tray, Icon, emacs-everywhere-enable.ico, , 1
 
 SetEmacsMode(true)
 SetSelectMode(false)
@@ -524,6 +526,20 @@ if( Stroke = "v" ){
     Send, ç
 } else if( Stroke = "_") {
     Send, ß
+} else if( Stroke = "5") {
+    Send, µ
+} else if( Stroke = "7") {
+    Send, ·
+} else if( Stroke = "g") {
+    Send, ç
+} else if( Stroke = "d") {
+    Send, æ
+} else if( Stroke = "h") {
+    Send, è
+} else if( Stroke = "i") {
+    Send, é
+} else if( Stroke = "`") {
+    Send, à
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
@@ -568,6 +584,18 @@ WinMinimize, A
 return
 
 #.::
-Send, %A_MM%/%A_DD%/%A_YYYY%
+Send, %A_DD%/%A_MMM%/%A_YYYY%
+return
 
+#x::
+Run "C:\Users\%A_UserName%\msys64\local-emacsclient.vbs"
+return
+
+^m::
+if WinActive("ahk_exe Teams.exe")
+{
+; toggle mute inside Teams
+    Send, ^M
+    return
+}
 return
