@@ -21,6 +21,8 @@ GroupAdd, NotActiveGroup, ahk_exe vcxsrv.exe
 ; no env creates problems with rider64.exe
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 
+EnvGet, msys64, MSYS64_PATH
+
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
@@ -538,8 +540,10 @@ if( Stroke = "v" ){
     Send, è
 } else if( Stroke = "i") {
     Send, é
-} else if( Stroke = "`") {
+} else if( Stroke = "a") {
     Send, à
+} else if( Stroke = "u") {
+    Send, ü
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
@@ -567,15 +571,15 @@ Run msedge.exe
 return
 
 #\::
-Run "C:\Users\%A_UserName%\msys64\kimikit\shortcuts\wsl-mu4e.vbs"
+Run "%msys64%\kimikit\shortcuts\wsl-mu4e.vbs"
 return
 
 #|::
-Run "C:\Users\%A_UserName%\msys64\kimikit\shortcuts\vcxsrv.vbs"
+Run "%msys64%\kimikit\shortcuts\vcxsrv.vbs"
 return
 
 #c::
-Run "C:\Users\%A_UserName%\msys64\kimikit\doublecmd\doublecmd.exe"
+Run "%msys64%\kimikit\doublecmd\doublecmd.exe"
 return
 
 #m::
@@ -588,7 +592,11 @@ Send, %A_DD%/%A_MMM%/%A_YYYY%
 return
 
 #x::
-Run "C:\Users\%A_UserName%\msys64\local-emacsclient.vbs"
+Run "%msys64%\local-emacsclient.vbs"
+return
+
+#t::
+Run "%msys64%\mingw64.exe"
 return
 
 ^m::
