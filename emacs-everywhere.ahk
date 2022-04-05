@@ -607,3 +607,12 @@ if WinActive("ahk_exe Teams.exe")
     return
 }
 return
+
+Pause::
+if WinActive("ahk_exe Teams.exe")
+{
+; toggle mute inside Teams
+    Send, ^M
+    return
+}
+return
