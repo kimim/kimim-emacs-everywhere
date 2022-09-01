@@ -405,7 +405,8 @@ $^y::SendCommand("^y","^v") ;; Paste
 ;Search
 ;==========================
 
-$^s::SendCommand("^s","{F3}") ;find
+$^s::SendCommand("^s","^f") ;find
+; TODO: but, in Outlook, F3 is used for find, ^f is forward mail
 $^r::SendCommand("^r","{Shift}+{F3}") ;reverse
 
 ;==========================
