@@ -600,6 +600,11 @@ return
 Run "%msys64%\mingw64.exe"
 return
 
+#y::
+; open Yodao dict
+Send, ^!x
+return
+
 ^m::
 if WinActive("ahk_exe Teams.exe")
 {
