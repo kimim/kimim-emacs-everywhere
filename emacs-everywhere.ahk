@@ -469,9 +469,9 @@ if( Stroke = "^s" ){
 } else if( Stroke = "p" ) {
     ;; print
     SendCommand("^xp", "^p")
-} else if( Stroke = "o") {
-    ;; switch window
-    SendCommand("^xo", "!{Tab}")
+; } else if( Stroke = "o") {
+;     ;; switch window
+;     SendCommand("^xo", "!{Tab}")
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
@@ -562,11 +562,6 @@ $!o::SendCommand("!o", "!{Tab}")
 Run firefox.exe
 return
 
-#o::
-; show outlook, reuse the instance
-Run "C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE" /recycle
-return
-
 #g::
 Run msedge.exe
 return
@@ -597,11 +592,22 @@ Run "%msys64%\local-emacsclient.vbs"
 return
 
 #t::
-Run "%msys64%\mingw64.exe"
+if WinExist("ahk_exe Teams.exe") and not WinActive("ahk_exe Teams.exe")
+    WinActivate ; Use the window found by WinExist.
+else
+    WinMinimize ; Use the window found by WinExist.
 return
 
+#o::
+if WinExist("ahk_exe OUTLOOK.EXE") and not WinActive("ahk_exe OUTLOOK.EXE")
+    WinActivate ; Use the window found by WinExist.
+else
+    WinMinimize ; Use the window found by WinExist.
+return
+
+
 #y::
-; open Yodao dict
+; open Yodao dict and paste
 Send, ^!x
 return
 
