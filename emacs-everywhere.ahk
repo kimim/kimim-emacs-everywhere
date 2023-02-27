@@ -14,6 +14,7 @@ GroupAdd, NotActiveGroup, ahk_class Emacs
 ;GroupAdd, NotActiveGroup, ahk_class TTOTAL_CMD
 GroupAdd, NotActiveGroup, ahk_exe VirtualBoxVM.exe
 GroupAdd, NotActiveGroup, ahk_exe vcxsrv.exe
+GroupAdd, NotActiveGroup, ahk_exe devenv.exe ;; visualstudio
 
 ;==========================
 ;Initialise
@@ -272,13 +273,21 @@ return
 ;Character Navigation
 ;==========================
 
-$^p::SendCommand("^p","{Up}")
+$<^p::SendCommand("^p","{Up}")
 
-$^n::SendCommand("^n","{Down}")
+$<^n::SendCommand("^n","{Down}")
 
-$^f::SendCommand("^f","{Right}")
+$<^f::SendCommand("^f","{Right}")
 
-$^b::SendCommand("^b","{Left}")
+$<^b::SendCommand("^b","{Left}")
+
+$>^p::SendCommand("^p","^p")
+
+$>^n::SendCommand("^n","^n")
+
+$>^f::SendCommand("^f","^f")
+
+$>^b::SendCommand("^b","^b")
 
 
 
