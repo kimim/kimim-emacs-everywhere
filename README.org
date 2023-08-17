@@ -11,30 +11,73 @@ To use this script:
 
 List of keys:
 
-| Mode                 | Keys  | Description                | Comments |
-|----------------------+-------+----------------------------+----------|
-| Global               | C-g   | Cancel operations          |          |
-|                      | C-z   | mark                       |          |
-|                      | Win-/ | toggle emacs everywhere    |          |
-| Character Navigation | C-f   | <right>                    |          |
-|                      | C-b   | <left>                     |          |
-| Word                 | M-f   | forward-word               |          |
-|                      | M-b   | backward-word              |          |
-| Page Navigation      | C-v   | <page down>                |          |
-|                      | M-v   | <page up>                  |          |
-|                      | M-<   | beginning of buffer        |          |
-|                      | M->   | end of buffer              |          |
-| Line Navigation      | C-a   | beginning of line          |          |
-|                      | C-e   | end of line                |          |
-|                      | C-p   | <up>                       |          |
-|                      | C-n   | <down>                     |          |
-| Kill/Delete          | C-h   | <backspace>                |          |
-|                      | C-d   | <delete>                   |          |
-|                      | C-k   | kill selected or kill line |          |
-|                      | C-w   | cut                        |          |
-|                      | M-w   | copy                       |          |
-|                      | C-y   | paste                      |          |
-| Search               | C-s   | find                       |          |
-|                      | C-r   | reverse find               |          |
-| Undo                 | C-/   | undo                       |          |
-|                      |       |                            |          |
+| Mode                 | Keys      | Description                    | Comments |
+|----------------------+-----------+--------------------------------+----------|
+| Windows Key (W)      |           |                                |          |
+|                      | Win-/     | toggle emacs everywhere        |          |
+|                      | Win-a     | open action center             | Windows  |
+|                      | Win-d     | show desktop                   | Windows  |
+|                      | Win-e     | open explorer                  | Windows  |
+|                      | Win-M-D   | show data/time                 | Windows  |
+|                      | Win-;     | open emoji panel               | Windows  |
+|                      | Win-k     | open connect quick action      | Windows  |
+|                      | Win-i     | open windows settings          | Windows  |
+|                      | Win-Pause | Mute Teams from anywhere       |          |
+|                      | Win-b     | show bluetooth devices         |          |
+|                      | Win-f     | open firefox                   |          |
+|                      | Win-g     | open msedge                    |          |
+|                      | Win-s     | open mintty shell              |          |
+|                      | Win-x     | open emacs client              |          |
+|                      | Win-o     | open outlook.exe               |          |
+|                      | Win-t     | open teams.exe                 |          |
+|                      | Win-Del   | suspend Windows                |          |
+|                      | Win-l     | lock Windows                   |          |
+|                      | Win-m     | minimize current Windows       |          |
+|                      | Win-`     | Translate clipboard with Emacs |          |
+|                      | Win-.     | insert date of today           |          |
+|----------------------+-----------+--------------------------------+----------|
+| Global               | C-g       | Cancel operations              |          |
+|                      | C-z       | mark                           |          |
+|                      | C-x C-f   | open file                      |          |
+|                      | C-x C-s   | save file                      |          |
+|                      | C-x k     | close tab                      |          |
+|                      | C-x C-c   | quit                           |          |
+|                      | C-x p     | print                          |          |
+|----------------------+-----------+--------------------------------+----------|
+| Character Navigation | C-f       | <right>                        |          |
+|                      | C-b       | <left>                         |          |
+| Word                 | M-f       | forward-word                   |          |
+|                      | M-b       | backward-word                  |          |
+| Page Navigation      | C-v       | <page down>                    |          |
+|                      | M-v       | <page up>                      |          |
+|                      | M-<       | beginning of buffer            |          |
+|                      | M->       | end of buffer                  |          |
+| Line Navigation      | C-a       | beginning of line              |          |
+|                      | C-e       | end of line                    |          |
+|                      | C-p       | <up>                           |          |
+|                      | C-n       | <down>                         |          |
+| Kill/Delete          | C-h       | <backspace>                    |          |
+|                      | C-d       | <delete>                       |          |
+|                      | C-k       | kill selected or kill line     |          |
+|                      | C-w       | cut                            |          |
+|                      | M-w       | copy                           |          |
+|                      | C-y       | paste                          |          |
+| Search               | C-s       | find                           |          |
+|                      | C-r       | reverse find                   |          |
+| Undo                 | C-/       | undo                           |          |
+|----------------------+-----------+--------------------------------+----------|
+| Special Character    | C-q M-v   | ö                              |          |
+|                      | C-q M-d   | ä                              |          |
+|                      | C-q M-e   | å                              |          |
+|                      | C-q M-g   | ç                              |          |
+|                      | C-q M-_   | ß                              |          |
+|                      | C-q M-u   | ü                              |          |
+|                      | C-q M-f   | æ                              |          |
+|                      | C-q M-h   | è                              |          |
+|                      | C-q M-i   | é                              |          |
+|                      | C-q M-a   | á                              |          |
+|                      | C-q M-7   | ·                              |          |
+|----------------------+-----------+--------------------------------+----------|
+| Microsoft Teams      |           |                                |          |
+|                      | Pause     | toggle mute/unmute             |          |
+|                      |           |                                |          |

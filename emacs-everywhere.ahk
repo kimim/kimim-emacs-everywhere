@@ -43,7 +43,7 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
 
     if WinActive("ahk_exe notepad++.exe")
     {
-        if( emacskey = "^s"){
+        if( emacskey = "<^s"){
             Send, ^!i
             return "stop"
         }
@@ -52,7 +52,7 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
 
     if WinActive("ahk_exe idea.exe")
     {
-        if( emacskey = "^k"){
+        if( emacskey = "<^k"){
             Send, ^k
             return "stop"
         }
@@ -60,55 +60,55 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
     }
 
     if WinActive("ahk_class AcrobatSDIWindow"){
-        if( emacskey = "^s" ){
+        if( emacskey = "<^s" ){
             stroke1 = ^f
         }
-        if( emacskey = "^r" ){
+        if( emacskey = "<^r" ){
             stroke1 = {Shift}+{F3}
         }
     }
 
     if WinActive("ahk_class MozillaUIWindowClass"){
-        if( emacskey = "^s")
+        if( emacskey = "<^s")
             stroke1 = ^f
-        if( emacskey = "^r")
+        if( emacskey = "<^r")
             stroke1 = ^f
     }
 
     if WinActive("ahk_class SUMATRA_PDF_FRAME"){
-        if( emacskey = "^s")
+        if( emacskey = "<^s")
             stroke1 = ^f
-        if( emacskey = "^r")
+        if( emacskey = "<^r")
             stroke1 = ^f
     }
 
     if WinActive("ahk_exe Notepad2.exe") AND WinActive("Find Text") {
-        if( emacskey = "^s"){
+        if( emacskey = "<^s"){
             ControlClick, &Find Next, Find Text
             return "stop"
         }
-        if( emacskey = "^r"){
+        if( emacskey = "<^r"){
             ControlClick, Find &Previous, Find Text
             return "stop"
         }
     } else if WinActive("ahk_exe Notepad2.exe"){
-        if( emacskey = "^s")
+        if( emacskey = "<^s")
             stroke1 = ^f
-        if( emacskey = "^r")
+        if( emacskey = "<^r")
             stroke1 = ^f
     }
 
     if WinActive("ahk_exe cmd.exe") {
-        if( emacskey = "^x^c"){
+        if( emacskey = "<^x<^c"){
             WinClose, A
             return "stop"
         }
     }
 
     if WinActive("ahk_class Chrome_WidgetWin_1"){
-        if( emacskey = "^s")
+        if( emacskey = "<^s")
             stroke1 = ^f
-        if( emacskey = "^r")
+        if( emacskey = "<^r")
             stroke1 = {SHIFTDOWN}{F3}{SHIFTUP}
     }
 
@@ -117,13 +117,13 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
             Send, ^k
             return "stop"
         }
-        if( emacskey = "^s"){
+        if( emacskey = "<^s"){
             Send, ^f
             return "stop"
         }
     }
     if WinActive("ahk_exe idea64.exe") {
-        if( emacskey = "^k"){
+        if( emacskey = "<^k"){
             Send, ^k
             return "stop"
         }
@@ -133,7 +133,7 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
         }
     }
     if WinActive("ahk_exe LINQPad.exe") {
-        if( emacsKey = "^x^x"){
+        if( emacsKey = "<^x<^x"){
             Send, ^x
             return "stop"
         }
@@ -142,11 +142,11 @@ FilterApps(ByRef emacskey, ByRef stroke1, ByRef stroke2){
 
     SetTitleMatchMode 2
     if WinActive("ahk_exe devenv.exe") {
-        if( emacsKey = "^k" ){
+        if( emacsKey = "<^k" ){
             Send, ^k
             return "stop"
         }
-        if( emacskey = "^s" OR emacskey = "^r" OR emacsKey = "^x^s" OR emacsKey = "^xu" OR emacsKey = "^x^x"){
+        if( emacskey = "<^s" OR emacskey = "<^r" OR emacsKey = "<^x<^s" OR emacsKey = "<^xu" OR emacsKey = "<^x<^x"){
             Send, %emacskey%
             return "stop"
         }
@@ -223,6 +223,124 @@ GetSelectedText()
     return sel
 }
 
+;=======================================================================
+; Windows + <key> is available for all applications
+;=======================================================================
+
+#Delete::
+; suspend system quickly
+DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
+return
+
+#s::
+; open msys64 bash in mintty
+Run "%msys64%\kshell.bat"
+return
+
+#f::
+; open firefox
+Run firefox.exe
+return
+
+#g::
+; open edge
+Run msedge.exe
+return
+
+#m::
+; minimize the top most window
+WinMinimize, A
+return
+
+#.::
+Send, %A_DD%/%A_MMM%/%A_YYYY%
+return
+
+#x::
+if WinExist("ahk_exe emacs.exe")
+{
+    if WinActive("ahk_exe emacs.exe")
+    {
+        WinMinimize
+    } else {
+        WinActivate
+    }
+} else {
+    Run "%msys64%\emacs-client.vbs"
+}
+return
+
+#t::
+if WinExist("ahk_exe Teams.exe")
+{
+    if WinActive("ahk_exe Teams.exe")
+    {
+        WinMinimize ; Use the window found by WinExist.
+    }
+    else
+    {
+        WinActivate ; Use the window found by WinExist.
+    }
+}
+return
+
+#o::
+;Run "%msys64%\kimikit\scripts\org-outlook-update.vbs"
+if WinExist("ahk_exe OUTLOOK.EXE")
+{
+    if WinActive("ahk_exe OUTLOOK.EXE")
+    {
+        WinMinimize ; Use the window found by WinExist.
+    }
+    else
+    {
+        WinActivate ; Use the window found by WinExist.
+    }
+} else {
+    Run outlook.exe
+}
+return
+
+#Pause::
+;; toggle Teams mute
+WinGetTitle, active_title, A                ; looks at the active program on your screen and puts it into variable "active_title"
+if active_title contains Microsoft Teams    ; if active program is Teams, move on
+{
+    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
+}
+else                                        ; if active program is not Teams then go to Teams
+{
+    SetTitleMatchMode, 2                    ; set Title search to exact
+    WinActivate, Microsoft Teams            ; bring "Microsoft Teams" to the foreground so the shortcut will work
+    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
+    Sleep, 100                              ; wait for command enable
+    WinActivate, %active_title%             ; go back to original program
+}
+return
+
+#`::
+Send ^c
+ClipWait  ; Wait for the clipboard to contain text.
+if WinExist("ahk_exe emacs.exe")
+{
+    WinActivate
+    if WinActive("ahk_exe emacs.exe")
+    {
+        Send ^xmy
+        Send ^x1
+        return
+    }
+}
+return
+
+#b::
+Run, ms-settings:connecteddevices
+; Send, ^{Esc} ; Open start menu
+; Send, Bluetooth and other devices settings
+; Sleep 150 ; Sleep in order to let cpu catch up
+; Send, {Return} ; Open the bluetooth settings panel
+return
+
 #If !WinActive("ahk_group NotActiveGroup")
 ;==========================
 ;Emacs mode toggle
@@ -245,7 +363,7 @@ SetSelectMode(false)
 SendCommand("^9","^9")
 return
 
-$^g::
+$<^g::
 if( !IsInSelectMode ){
     IfWinActive ahk_class MUSHYBAR
     {
@@ -265,7 +383,7 @@ else{
 }
 return
 
-~$^c::
+~$<^c::
 SetSelectMode(false)
 return
 
@@ -273,21 +391,21 @@ return
 ;Character Navigation
 ;==========================
 
-$<^p::SendCommand("^p","{Up}")
+$<^p::SendCommand("<^p","{Up}")
 
-$<^n::SendCommand("^n","{Down}")
+$<^n::SendCommand("<^n","{Down}")
 
 $<^f::SendCommand("^f","{Right}")
 
-$<^b::SendCommand("^b","{Left}")
+$<^b::SendCommand("<^b","{Left}")
 
-$>^p::SendCommand("^p","^p")
+$>^p::SendCommand("<^p","<^p")
 
-$>^n::SendCommand("^n","^n")
+$>^n::SendCommand("<^n","<^n")
 
-$>^f::SendCommand("^f","^f")
+$>^f::SendCommand("<^f","<^f")
 
-$>^b::SendCommand("^b","^b")
+$>^b::SendCommand("<^b","<^b")
 
 
 
@@ -299,17 +417,17 @@ $>^b::SendCommand("^b","^b")
 
 ;$!n::SendCommand("!n","^{Down}")
 
-$!f::SendCommand("!f","^{Right}")
+$<!f::SendCommand("!f","^{Right}")
 
-$!b::SendCommand("!b","^{Left}")
+$<!b::SendCommand("!b","^{Left}")
 
 ;==========================
 ;Line Navigation
 ;==========================
 
-$^a::SendCommand("^a","{Home}")
+$<^a::SendCommand("^a","{Home}")
 
-$^e::SendCommand("^e","{End}")
+$<^e::SendCommand("^e","{End}")
 
 ;==========================
 ;Page Navigation
@@ -317,49 +435,49 @@ $^e::SendCommand("^e","{End}")
 
 ;Ctrl-V disabled. Too reliant on that for pasting :$
 Hotkey, IfWinActive, ahk_exe rider64.exe
-$!n::SendCommand("^v","{PgDn}")
-$!p::SendCommand("!v","{PgUp}")
+$<!n::SendCommand("^v","{PgDn}")
+$<!p::SendCommand("!v","{PgUp}")
 Hotkey, IfWinActive
 
-$^v::SendCommand("^v","{PgDn}")
-$!v::SendCommand("^v","{PgUp}")
+$<^v::SendCommand("^v","{PgDn}")
+$<!v::SendCommand("^v","{PgUp}")
 
-$!<::SendCommand("!<","^{Home}")
-$!>::SendCommand("!>","^{End}")
+$<!<::SendCommand("!<","^{Home}")
+$<!>::SendCommand("!>","^{End}")
 
 ;==========================
 ;Undo
 ;==========================
 
 ;$^_::SendCommand("^_","^z")
-$^/::SendCommand("^/","^z")
-$+^7::SendCommand("^+7","^y")
+$<^/::SendCommand("^/","^z")
+$+<^7::SendCommand("^+7","^y")
 
 
 ;==========================
 ;Killing and Deleting
 ;==========================
-$^h::
+$<^h::
 SetSelectMode(false)
 SendCommand("^h","{Backspace}")
 return
 
-$!h::
+$<!h::
 SetSelectMode(false)
 SendCommand("!h","^{Backspace}")
 return
 
-$^d::
+$<^d::
 SetSelectMode(false)
 SendCommand("^d","{Delete}")
 return
 
-$!d::
+$<!d::
 SetSelectMode(false)
 SendCommand("!d", "^{Delete}")
 return
 
-$^k::
+$<^k::
 SetSelectMode(false)
 emacskey := "^k"
 processkey := FilterApps( emacskey, emacskey, "" )
@@ -384,7 +502,7 @@ else{
 
 return
 
-$^w:: ;; Cut selected text
+$<^w:: ;; Cut selected text
 SetSelectMode(false)
 
 emacskey := "^k"
@@ -408,33 +526,33 @@ selection := GetSelectedText()
 Send, ^c
 return
 
-$^y::SendCommand("^y","^v") ;; Paste
+$<^y::SendCommand("^y","^v") ;; Paste
 
 ;==========================
 ;Search
 ;==========================
 
-$^s::SendCommand("^s","^f") ;find
+$<^s::SendCommand("^s","^f") ;find
 ; TODO: but, in Outlook, F3 is used for find, ^f is forward mail
-$^r::SendCommand("^r","{Shift}+{F3}") ;reverse
+$<^r::SendCommand("^r","{Shift}+{F3}") ;reverse
 
 ;==========================
 ;Edit
 ;==========================
 
-$^o::
+$<^o::
 Send, {Home}
 Send, {Enter}
 Send, {Up}
 return
 
-$^j::SendCommand("^j", "{Enter}")
+$<^j::SendCommand("^j", "{Enter}")
 
 ;==========================
 ; File Handling Commands CTRL+X
 ;==========================
 
-$^x::
+$<^x::
 Suspend, On ; other hotkeys such as ^s from being queued http://l.autohotkey.net/docs/misc/Threads.htm
 Critical ; and don't interrupt (suspend) the current thread's execution
 
@@ -457,14 +575,14 @@ else{
 
 SetSelectMode(false)
 
-; C-g		keyboard-quit		Stop current command Now!
+; C-g        keyboard-quit        Stop current command Now!
 if( Stroke = "^g" ){
     Suspend, Off
     return
 }
 
 if( Stroke = "^s" ){
-    ; C-x C-s: save-buffer,	Save the current buffer.
+    ; C-x C-s: save-buffer,    Save the current buffer.
     SendCommand("^x^s", "^s")
 } else if( Stroke = "^c" ){
     ; C-x C-c: save-buffers-kill-emacs, Save all open buffers and get out of emacs.
@@ -491,7 +609,7 @@ Suspend, Off
 return
 
 
-$^q::
+$<^q::
 Suspend, On ; other hotkeys such as ^s from being queued http://l.autohotkey.net/docs/misc/Threads.htm
 Critical ; and don't interrupt (suspend) the current thread's execution
 
@@ -514,7 +632,7 @@ else{
 
 SetSelectMode(false)
 
-; C-g		keyboard-quit		Stop current command Now!
+; C-g keyboard-quit Stop current command Now!
 if( Stroke = "^g" ){
     Suspend, Off
     return
@@ -544,7 +662,7 @@ if( Stroke = "v" ){
     Send, ·
 } else if( Stroke = "g") {
     Send, ç
-} else if( Stroke = "d") {
+} else if( Stroke = "f") {
     Send, æ
 } else if( Stroke = "h") {
     Send, è
@@ -563,77 +681,25 @@ if( Stroke = "v" ){
 Suspend, Off
 return
 
-
 ; switch window with Alt-o
-$!o::SendCommand("!o", "!{Tab}")
-
-#f::
-Run firefox.exe
-return
-
-#g::
-Run msedge.exe
-return
-
-#\::
-Run "%msys64%\kimikit\shortcuts\wsl-mu4e.vbs"
-return
-
-#|::
-Run "%msys64%\kimikit\shortcuts\vcxsrv.vbs"
-return
-
-#c::
-Run "%msys64%\kimikit\doublecmd\doublecmd.exe"
-return
-
-#m::
-; minimize the top most window
-WinMinimize, A
-return
-
-#.::
-Send, %A_DD%/%A_MMM%/%A_YYYY%
-return
-
-#x::
-Run "%msys64%\local-emacsclient.vbs"
-return
-
-#t::
-if WinExist("ahk_exe Teams.exe") and not WinActive("ahk_exe Teams.exe")
-    WinActivate ; Use the window found by WinExist.
-else
-    WinMinimize ; Use the window found by WinExist.
-return
-
-#o::
-if WinExist("ahk_exe OUTLOOK.EXE") and not WinActive("ahk_exe OUTLOOK.EXE")
-    WinActivate ; Use the window found by WinExist.
-else
-    WinMinimize ; Use the window found by WinExist.
-return
-
-
-#y::
-; open Yodao dict and paste
-Send, ^!x
-return
+$<!o::SendCommand("!o", "!{Tab}")
 
 ^m::
-if WinActive("ahk_exe Teams.exe")
+Pause::
+;; toggle Teams mute inside Teams
+WinGetTitle, active_title, A                ; looks at the active program on your screen and puts it into variable "active_title"
+if active_title contains Microsoft Teams    ; if active program is Teams, move on
 {
-; toggle mute inside Teams
-    Send, ^M
-    return
+    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
 }
 return
 
-Pause::
-if WinActive("ahk_exe Teams.exe")
-{
-; toggle mute inside Teams
-    Send, ^M
-    return
-}
-return
+; #0::
+; CenterWindow(WinTitle)
+; {
+;     WinGetPos,,, Width, Height, %WinTitle%
+;     WinMove, %WinTitle%,, (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2)
+; }
+; winid := WinActive()
+; CenterWindow(winid)
+; return
