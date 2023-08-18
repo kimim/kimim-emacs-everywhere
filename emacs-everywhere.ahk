@@ -232,14 +232,37 @@ GetSelectedText()
 DllCall("PowrProf\SetSuspendState", "int", 0, "int", 0, "int", 0)
 return
 
+OpenEdgeTab(TabNum)
+{
+    if WinExist("ahk_exe msedge.exe")
+    {
+        if !WinActive("ahk_exe msedge.exe")
+        {
+            WinActivate
+        }
+        Send, ^%TabNum%
+    }
+}
+
+
+#c::OpenEdgeTab(1)
+#o::
+OpenEdgeTab(2)
+if WinActive("ahk_exe msedge.exe")
+{
+    Send, gi
+}
+return
+#t::OpenEdgeTab(3)
+
 #s::
 ; open msys64 bash in mintty
-Run "%msys64%\kshell.bat"
+Run %msys64%\kshell.bat
 return
 
 #f::
 ; open firefox
-Run firefox.exe
+Run %msys64%\kimikit\firefox\firefox.exe
 return
 
 #g::
@@ -267,37 +290,6 @@ if WinExist("ahk_exe emacs.exe")
     }
 } else {
     Run "%msys64%\emacs-client.vbs"
-}
-return
-
-#t::
-if WinExist("ahk_exe Teams.exe")
-{
-    if WinActive("ahk_exe Teams.exe")
-    {
-        WinMinimize ; Use the window found by WinExist.
-    }
-    else
-    {
-        WinActivate ; Use the window found by WinExist.
-    }
-}
-return
-
-#o::
-;Run "%msys64%\kimikit\scripts\org-outlook-update.vbs"
-if WinExist("ahk_exe OUTLOOK.EXE")
-{
-    if WinActive("ahk_exe OUTLOOK.EXE")
-    {
-        WinMinimize ; Use the window found by WinExist.
-    }
-    else
-    {
-        WinActivate ; Use the window found by WinExist.
-    }
-} else {
-    Run outlook.exe
 }
 return
 
@@ -684,15 +676,17 @@ return
 ; switch window with Alt-o
 $<!o::SendCommand("!o", "!{Tab}")
 
-^m::
-Pause::
-;; toggle Teams mute inside Teams
-WinGetTitle, active_title, A                ; looks at the active program on your screen and puts it into variable "active_title"
-if active_title contains Microsoft Teams    ; if active program is Teams, move on
-{
-    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
-}
-return
+#IfWinActive ahk_exe Teams.exe
+    ^m::
+    Pause::
+    ;; toggle Teams mute inside Teams
+    WinGetTitle, active_title, A                ; looks at the active program on your screen and puts it into variable "active_title"
+    if active_title contains Microsoft Teams    ; if active program is Teams, move on
+    {
+        Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
+    }
+    return
+#IfWinActive
 
 ; #0::
 ; CenterWindow(WinTitle)
