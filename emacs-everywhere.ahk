@@ -311,8 +311,15 @@ else                                        ; if active program is not Teams the
 return
 
 #`::
-Send ^c
-ClipWait  ; Wait for the clipboard to contain text.
+; translate current selection
+if WinActive("ahk_exe emacs.exe")
+{
+    WinMinimize
+    return
+}
+Send >^c
+Sleep, 100  ; add some delay to copy text
+ClipWait    ; Wait for the clipboard to contain text.
 if WinExist("ahk_exe emacs.exe")
 {
     WinActivate
