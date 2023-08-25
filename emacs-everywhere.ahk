@@ -260,6 +260,11 @@ return
 Run %msys64%\kshell.bat
 return
 
+#+s::
+; open msys64 bash in mintty
+Run %msys64%\wshell.bat
+return
+
 #f::
 ; open firefox
 Run %msys64%\kimikit\firefox\firefox.exe
