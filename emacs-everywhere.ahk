@@ -639,31 +639,29 @@ if( Stroke = "^g" ){
 ; | ß    | C-q M-_   |
 
 if( Stroke = "v" ){
-    Send, ö
+    Send {U+f6}             ;ö
 } else if( Stroke = "e" ){
-    Send, å
+    Send {U+e5}             ;å
 } else if( Stroke = "d" ){
-    Send, ä
+    Send {U+e4}             ;ä
 } else if( Stroke = "g" ){
-    Send, ç
+    Send {U+e7}             ;ç
 } else if( Stroke = "_") {
-    Send, ß
+    Send {U+df}             ;ß
 } else if( Stroke = "5") {
-    Send, µ
+    Send {U+b5}             ;µ
 } else if( Stroke = "7") {
-    Send, ·
-} else if( Stroke = "g") {
-    Send, ç
+    Send {U+b7}             ;·
 } else if( Stroke = "f") {
-    Send, æ
+    Send {U+e6}             ;æ
 } else if( Stroke = "h") {
-    Send, è
+    Send {U+e8}             ;è
 } else if( Stroke = "i") {
-    Send, é
+    Send {U+e9}             ;é
 } else if( Stroke = "a") {
-    Send, à
-} else if( Stroke = "u") {
-    Send, ü
+    Send {U+e0}             ;à
+} else if( Stroke = "|") {
+    Send {U+fc}             ;ü
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
