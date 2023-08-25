@@ -707,3 +707,11 @@ $<!o::SendCommand("!o", "!{Tab}")
 ; winid := WinActive()
 ; CenterWindow(winid)
 ; return
+
+; :*:..::
+; Send, %A_DD%/%A_MMM%/%A_YYYY%
+; return
+
+; :*:[.::
+; Send, [%A_DD%/%A_MMM%/%A_YYYY%]
+; return
