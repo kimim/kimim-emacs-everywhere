@@ -642,20 +642,20 @@ if( Stroke = "^g" ){
     return
 }
 
-; | Char | Input     |
-; |------+-----------|
-; | ö    | C-q M-v   |
-; | ä    | C-q M-d   |
-; | å    | C-q M-e   |
-; | ç    | C-q M-g   |
-; | ß    | C-q M-_   |
-
-if( Stroke = "v" ){
-    Send {U+f6}             ;ö
-} else if( Stroke = "e" ){
+if( Stroke = "e" ){
     Send {U+e5}             ;å
 } else if( Stroke = "d" ){
     Send {U+e4}             ;ä
+} else if( Stroke = "v" ){
+    Send {U+f6}             ;ö
+} else if( Stroke = "|") {
+    Send {U+fc}             ;ü
+} else if( Stroke = "f") {
+    Send {U+e6}             ;æ
+} else if( Stroke = "h") {
+    Send {U+e8}             ;è
+} else if( Stroke = "i") {
+    Send {U+e9}             ;é
 } else if( Stroke = "g" ){
     Send {U+e7}             ;ç
 } else if( Stroke = "_") {
@@ -664,16 +664,6 @@ if( Stroke = "v" ){
     Send {U+b5}             ;µ
 } else if( Stroke = "7") {
     Send {U+b7}             ;·
-} else if( Stroke = "f") {
-    Send {U+e6}             ;æ
-} else if( Stroke = "h") {
-    Send {U+e8}             ;è
-} else if( Stroke = "i") {
-    Send {U+e9}             ;é
-} else if( Stroke = "a") {
-    Send {U+e0}             ;à
-} else if( Stroke = "|") {
-    Send {U+fc}             ;ü
 } else{
     ;else pass along the emacs key
     emacsKey = ^x%Stroke%
