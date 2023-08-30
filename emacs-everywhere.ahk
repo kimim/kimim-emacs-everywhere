@@ -345,6 +345,9 @@ Run, ms-settings:connecteddevices
 ; Send, {Return} ; Open the bluetooth settings panel
 return
 
+#PgUp::WinSet, AlwaysOnTop, On, A
+#PgDn::WinSet, AlwaysOnTop, Off, A
+
 #If !WinActive("ahk_group NotActiveGroup")
 ;==========================
 ;Emacs mode toggle
