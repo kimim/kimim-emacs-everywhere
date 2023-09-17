@@ -653,6 +653,8 @@ if( Stroke = "e" ){
     Send {U+f6}             ;ö
 } else if( Stroke = "|") {
     Send {U+fc}             ;ü
+} else if( Stroke = "\") {
+    Send {U+dc}             ;Ü
 } else if( Stroke = "f") {
     Send {U+e6}             ;æ
 } else if( Stroke = "h") {
