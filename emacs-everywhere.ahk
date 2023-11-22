@@ -290,7 +290,7 @@ if WinExist() {
     Gui, Color, 4169e1
     Gui, Font, cWhite w700 s50, Arial
     WinSet, Transparent, 230
-    Gui, Add, Text, , %A_MM%-%A_DD% %A_Hour%:%A_Min%
+    Gui, Add, Text, , %A_MM%-%A_DD% %A_DDD% %A_Hour%:%A_Min%
     Gui, Show
 }
 return
