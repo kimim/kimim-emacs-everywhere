@@ -280,6 +280,21 @@ return
 WinMinimize, A
 return
 
+#,::
+Gui +LastFoundExist
+if WinExist() {
+    Gui, Destroy
+} else {
+    Gui, +AlwaysOnTop -Caption +Owner +LastFound
+    Gui, Margin, 20, 10
+    Gui, Color, 4169e1
+    Gui, Font, cWhite w700 s50, Arial
+    WinSet, Transparent, 230
+    Gui, Add, Text, , %A_MM%-%A_DD% %A_Hour%:%A_Min%
+    Gui, Show
+}
+return
+
 #.::
 Send, %A_DD%/%A_MMM%/%A_YYYY%
 return
