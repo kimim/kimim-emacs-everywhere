@@ -246,13 +246,13 @@ OpenEdgeTab(TabNum)
 
 
 #c::OpenEdgeTab(1)
-#o::
-OpenEdgeTab(2)
-if WinActive("ahk_exe msedge.exe")
-{
-    Send, gi
-}
-return
+; #o::
+; OpenEdgeTab(2)
+; if WinActive("ahk_exe msedge.exe")
+; {
+;     Send, gi
+; }
+; return
 #t::OpenEdgeTab(3)
 
 #s::
@@ -666,16 +666,24 @@ if( Stroke = "e" ){
     Send {U+e4}             ;ä
 } else if( Stroke = "v" ){
     Send {U+f6}             ;ö
-} else if( Stroke = "|") {
+} else if( Stroke = "t" ){
+    Send {U+f4}             ;ô
+} else if( Stroke = "|" ) {
     Send {U+fc}             ;ü
-} else if( Stroke = "\") {
+} else if( Stroke = "\" ) {
     Send {U+dc}             ;Ü
-} else if( Stroke = "f") {
+} else if( Stroke = "f" ) {
     Send {U+e6}             ;æ
-} else if( Stroke = "h") {
+} else if( Stroke = "h" ) {
     Send {U+e8}             ;è
-} else if( Stroke = "i") {
+} Else if( Stroke = "i" ) {
     Send {U+e9}             ;é
+} else if( Stroke = "j" ) {
+    Send {U+ea}             ;ê
+} else if( Stroke = "o" ) {
+    Send {U+ef}             ;ï
+} else if( Stroke = "n" ) {
+    Send {U+ee}             ;î
 } else if( Stroke = "g" ){
     Send {U+e7}             ;ç
 } else if( Stroke = "_") {
@@ -725,3 +733,69 @@ $<!o::SendCommand("!o", "!{Tab}")
 ; :*:[.::
 ; Send, [%A_DD%/%A_MMM%/%A_YYYY%]
 ; return
+#Tab:: AltTab()
+
+#o:: AltTab()
+
+AltTab(){
+    list := ""
+    WinGet, id, list
+    Loop, %id%
+    {
+        this_ID := id%A_Index%
+        IfWinActive, ahk_id %this_ID%
+            continue
+        WinGetTitle, title, ahk_id %this_ID%
+        If (title = "")
+            continue
+        If (!IsWindow(WinExist("ahk_id" . this_ID)))
+            continue
+        If (!WinVisible("ahk_id" . this_ID))
+            continue
+        WinActivate, ahk_id %this_ID%, ,2
+            break
+    }
+}
+
+;-----------------------------------------------------------------
+; Check whether the target window is activation target
+;-----------------------------------------------------------------
+IsWindow(hWnd){
+    WinGet, dwStyle, Style, ahk_id %hWnd%
+    if ((dwStyle&0x08000000) || !(dwStyle&0x10000000)) {
+        return false
+    }
+    WinGet, dwExStyle, ExStyle, ahk_id %hWnd%
+    if (dwExStyle & 0x00000080) {
+        return false
+    }
+    WinGetClass, szClass, ahk_id %hWnd%
+    if (szClass = "TApplication") {
+        return false
+    }
+    return true
+}
+
+;; TODO outlook window is not working
+;; Window Visible, RET 0 or ABCDE 1 if visible at A(X,Y) B(X+W) C(X,X+H) D(X+W,Y(H) E(CNTR)
+WinVisible(ahkWin:="A")
+{
+    wHandle := WinExist(ahkWin)
+    WinGetPos, X, Y, W, H, %ahkWin%
+    WinGetTitle, title,  %ahkWin%
+
+    count := (wHandle == WinVisibleAtXY(X, Y) ? 10000 : 0)
+           + (wHandle == WinVisibleAtXY(X, Y+H-1) ? 1000 : 0)
+           + (wHandle == WinVisibleAtXY(X+W-1, Y) ? 100 : 0)
+           + (wHandle == WinVisibleAtXY(X+W-1, Y+H-1) ? 10 : 0)
+           + (wHandle == WinVisibleAtXY(X+W//2, Y+H//2) ? 1 : 0)
+    ;;MsgBox, %X%, %Y%, %W%, %H%, %ahkWin%, %title%, %count%
+    return count
+}
+
+;; used by WinVisible()
+WinVisibleAtXY(X, Y)
+{
+    win := DllCall( "WindowFromPoint", "UInt64", X | (Y << 32))
+    return DllCall( "GetAncestor", "UInt", win, "UInt", GA_ROOT := 2 )
+}
