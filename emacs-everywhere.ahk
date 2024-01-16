@@ -799,3 +799,16 @@ WinVisibleAtXY(X, Y)
     win := DllCall( "WindowFromPoint", "UInt64", X | (Y << 32))
     return DllCall( "GetAncestor", "UInt", win, "UInt", GA_ROOT := 2 )
 }
+
+
+; #'::
+; MouseGetPos, xpos, ypos
+; MsgBox, Mouse is in X = %xpos% Y = %ypos%.
+; Return
+
+;; click notification message
+#'::
+CoordMode, Mouse, Screen
+MouseMove, 3600, 1950
+Click, Left
+Return
