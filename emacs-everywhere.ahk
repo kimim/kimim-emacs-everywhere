@@ -752,7 +752,7 @@ AltTab(){
             continue
         If (!WinVisible("ahk_id" . this_ID))
             continue
-        WinActivate, ahk_id %this_ID%, ,2
+        WinActivate, ahk_id %this_ID%
             break
     }
 }
@@ -807,7 +807,7 @@ WinVisibleAtXY(X, Y)
 ; Return
 
 ;; click notification message
-#'::
+#q::
 CoordMode, Mouse, Screen
 MouseMove, 3600, 1950
 Click, Left
