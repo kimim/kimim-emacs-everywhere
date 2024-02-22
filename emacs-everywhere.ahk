@@ -313,18 +313,20 @@ if WinExist("ahk_exe emacs.exe")
 }
 return
 
-#Pause::
+Pause::
 ;; toggle Teams mute
 WinGetTitle, active_title, A                ; looks at the active program on your screen and puts it into variable "active_title"
 if active_title contains Microsoft Teams    ; if active program is Teams, move on
 {
-    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
+    Send {Ctrl down}{Shift down}m{Shift up}{Ctrl up}
+                                            ; send CTRL + SHIFT + M for Teams microphone mute on/off
 }
 else                                        ; if active program is not Teams then go to Teams
 {
     SetTitleMatchMode, 2                    ; set Title search to exact
     WinActivate, Microsoft Teams            ; bring "Microsoft Teams" to the foreground so the shortcut will work
-    Send ^+M                                ; send CTRL + SHIFT + M for Teams microphone mute on/off
+    Send {Ctrl down}{Shift down}m{Shift up}{Ctrl up}
+                                            ; send CTRL + SHIFT + M for Teams microphone mute on/off
     Sleep, 100                              ; wait for command enable
     WinActivate, %active_title%             ; go back to original program
 }
@@ -337,7 +339,7 @@ if WinActive("ahk_exe emacs.exe")
     WinMinimize
     return
 }
-Send >^c
+Send {RCtrl down}c{RCtrl up}
 Sleep, 100  ; add some delay to copy text
 ClipWait    ; Wait for the clipboard to contain text.
 if WinExist("ahk_exe emacs.exe")
@@ -421,13 +423,13 @@ $<^f::SendCommand("^f","{Right}")
 
 $<^b::SendCommand("<^b","{Left}")
 
-$>^p::SendCommand("<^p","<^p")
+$>^p::SendCommand("<^p","^p")
 
-$>^n::SendCommand("<^n","<^n")
+$>^n::SendCommand("<^n","^n")
 
-$>^f::SendCommand("<^f","<^f")
+$>^f::SendCommand("<^f","^f")
 
-$>^b::SendCommand("<^b","<^b")
+$>^b::SendCommand("<^b","^b")
 
 
 
@@ -809,6 +811,6 @@ WinVisibleAtXY(X, Y)
 ;; click notification message
 #q::
 CoordMode, Mouse, Screen
-MouseMove, 3600, 1950
+MouseMove, 3600, 1930
 Click, Left
 Return
