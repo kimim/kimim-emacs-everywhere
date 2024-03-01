@@ -257,12 +257,12 @@ OpenEdgeTab(TabNum)
 
 #s::
 ; open msys64 bash in mintty
-Run %msys64%\kimikit\bin\kterm.cmd
+Run %msys64%\kimikit\bin\kterm.vbs
 return
 
 #+s::
 ; open msys64 bash in mintty
-Run %msys64%\kimikit\bin\wterm.cmd
+Run %msys64%\kimikit\bin\wterm.vbs
 return
 
 ; #f::
