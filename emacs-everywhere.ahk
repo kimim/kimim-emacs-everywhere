@@ -257,18 +257,18 @@ OpenEdgeTab(TabNum)
 
 #s::
 ; open msys64 bash in mintty
-Run %msys64%\kshell.bat
+Run %msys64%\kimikit\bin\kterm.cmd
 return
 
 #+s::
 ; open msys64 bash in mintty
-Run %msys64%\wshell.bat
+Run %msys64%\kimikit\bin\wterm.cmd
 return
 
-#f::
-; open firefox
-Run %msys64%\kimikit\firefox\firefox.exe
-return
+; #f::
+; ; open firefox
+; Run %msys64%\kimikit\firefox\firefox.exe
+; return
 
 #g::
 ; open edge
