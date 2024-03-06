@@ -22,7 +22,7 @@ GroupAdd, NotActiveGroup, ahk_exe devenv.exe ;; visualstudio
 ; no env creates problems with rider64.exe
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 
-EnvGet, msys64, MSYS64_PATH
+EnvGet, kimikit, KIMIKIT
 
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -256,18 +256,18 @@ OpenEdgeTab(TabNum)
 #t::OpenEdgeTab(3)
 
 #s::
-; open msys64 bash in mintty
-Run %msys64%\kimikit\bin\kterm.vbs
+; open bash in mintty
+Run %kimikit%\bin\kterm.vbs
 return
 
 #+s::
-; open msys64 bash in mintty
-Run %msys64%\kimikit\bin\wterm.vbs
+; open bash in mintty
+Run %kimikit%\bin\wterm.vbs
 return
 
 ; #f::
 ; ; open firefox
-; Run %msys64%\kimikit\firefox\firefox.exe
+; Run %kimikit%\firefox\firefox.exe
 ; return
 
 #g::
@@ -309,7 +309,7 @@ if WinExist("ahk_exe emacs.exe")
         WinActivate
     }
 } else {
-    Run "%msys64%\emacs-client.vbs"
+    Run "%kimikit%\bin\emacs-client.vbs"
 }
 return
 
