@@ -355,7 +355,7 @@ if WinExist("ahk_exe emacs.exe")
 return
 
 #b::
-Run, ms-settings:connecteddevices
+Run, ms-settings:devices
 ; Send, ^{Esc} ; Open start menu
 ; Send, Bluetooth and other devices settings
 ; Sleep 150 ; Sleep in order to let cpu catch up
