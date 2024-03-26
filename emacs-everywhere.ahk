@@ -354,6 +354,26 @@ if WinExist("ahk_exe emacs.exe")
 }
 return
 
+#'::
+; translate current selection
+if WinExist("Reverso Translate - Reverso | Free translation, dictionary")
+{
+    if WinActive() {
+        WinMinimize
+    } else {
+        Send {RCtrl down}c{RCtrl up}
+        Sleep, 100  ; add some delay to copy text
+        ClipWait    ; Wait for the clipboard to contain text.
+        if WinExist("Reverso Translate - Reverso | Free translation, dictionary")
+        {
+            WinActivate
+            Send {RCtrl down}a{RCtrl up}
+            Send {RCtrl down}v{RCtrl up}
+        }
+    }
+}
+return
+
 #b::
 Run, ms-settings:devices
 ; Send, ^{Esc} ; Open start menu
