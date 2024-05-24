@@ -275,7 +275,7 @@ return
 Run msedge.exe
 return
 
-#m::
+#h::
 ; minimize the top most window
 WinMinimize, A
 return
@@ -833,4 +833,14 @@ WinVisibleAtXY(X, Y)
 CoordMode, Mouse, Screen
 MouseMove, 3600, 1930
 Click, Left
+Return
+
+#^Left::
+WinGetActiveTitle, WinTitle
+WinMove, %WinTitle%,, (A_ScreenWidth/160), (A_ScreenHeight/90), (95*A_ScreenWidth/160), (84*A_ScreenHeight/90)
+Return
+
+#^Right::
+WinGetActiveTitle, WinTitle
+WinMove, %WinTitle%,, (96*A_ScreenWidth/160), (A_ScreenHeight/90), (63*A_ScreenWidth/160), (84*A_ScreenHeight/90)
 Return
