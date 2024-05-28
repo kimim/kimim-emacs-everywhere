@@ -837,10 +837,25 @@ Return
 
 #^Left::
 WinGetActiveTitle, WinTitle
-WinMove, %WinTitle%,, (A_ScreenWidth/160), (A_ScreenHeight/90), (95*A_ScreenWidth/160), (84*A_ScreenHeight/90)
+WinMove, %WinTitle%,, (A_ScreenWidth/160), (A_ScreenHeight/90), (95*A_ScreenWidth/160), (85*A_ScreenHeight/90)
 Return
 
 #^Right::
 WinGetActiveTitle, WinTitle
-WinMove, %WinTitle%,, (96*A_ScreenWidth/160), (A_ScreenHeight/90), (63*A_ScreenWidth/160), (84*A_ScreenHeight/90)
+WinMove, %WinTitle%,, (96*A_ScreenWidth/160), (A_ScreenHeight/90), (63*A_ScreenWidth/160), (85*A_ScreenHeight/90)
+Return
+
+#Up::
+#^Up::
+WinGetActiveTitle, WinTitle
+WinMove, %WinTitle%,, (A_ScreenWidth/160), (A_ScreenHeight/90), (158*A_ScreenWidth/160), (85*A_ScreenHeight/90)
+Return
+
+#^C::
+WinGetActiveTitle, WinTitle
+WinMove, %WinTitle%,, (10*A_ScreenWidth/160), (10*A_ScreenHeight/90), (140*A_ScreenWidth/160), (70*A_ScreenHeight/90)
+Return
+
+#!H::
+Send, #{Home}
 Return
